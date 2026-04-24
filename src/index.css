@@ -9,64 +9,61 @@ html, body, #root {
 }
 
 body {
-  background: #0b0d13;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Inputs ──────────────────────────────────────────────── */
+/* ── Inputs ───────────────────────────────────────── */
 input[type="text"],
 input[type="number"],
 input:not([type]) {
   height: 38px;
   padding: 0 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
-  color: #dde4f2;
+  color: var(--input-color);
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
 
 input::placeholder {
-  color: #3d4a62;
+  color: var(--input-placeholder);
 }
 
 input:focus {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(0, 224, 160, 0.45);
-  box-shadow: 0 0 0 3px rgba(0, 224, 160, 0.08);
+  border-color: var(--input-focus-border);
+  box-shadow: var(--input-focus-shadow);
 }
 
-/* Remove number input spinners */
+/* Remove number spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 input[type="number"] { -moz-appearance: textfield; }
 
-/* ── Buttons ─────────────────────────────────────────────── */
+/* ── Buttons ───────────────────────────────────────── */
 button {
   height: 38px;
   padding: 0 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
   border-radius: 8px;
   font-size: 13.5px;
   font-weight: 600;
   font-family: inherit;
-  color: #c8d4e8;
+  color: var(--btn-text);
   cursor: pointer;
-  transition: background 0.12s, border-color 0.12s, transform 0.08s, color 0.12s;
+  transition: background 0.12s, border-color 0.12s, transform 0.08s, color 0.12s, box-shadow 0.12s;
   white-space: nowrap;
 }
 
 button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #dde4f2;
+  background: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border);
 }
 
 button:active:not(:disabled) {
