@@ -1,21 +1,56 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Light theme (default) ─────────────────────────────────── */
+:root {
+  --accent:          #6d5af8;
+  --accent-dim:      rgba(109, 90, 248, 0.08);
+  --accent-border:   rgba(109, 90, 248, 0.22);
+  --red:             #ef4444;
+  --yellow:          #d97706;
+  --yellow-dim:      rgba(217, 119, 6, 0.07);
+  --yellow-border:   rgba(217, 119, 6, 0.2);
+  --input-bg:        #f9fafb;
+  --input-border:    #e5e7eb;
+  --input-focus:     rgba(109, 90, 248, 0.5);
+  --input-shadow:    0 0 0 3px rgba(109, 90, 248, 0.10);
+  --input-color:     #111827;
+  --input-ph:        #c4c9d4;
+  --btn-bg:          #ffffff;
+  --btn-border:      #e0e3eb;
+  --btn-text:        #4b5563;
+  --btn-hover-bg:    #f9fafb;
+  --btn-hover-bd:    #c8cfe0;
+  --pre-bg:          #f3f4f8;
 }
 
-html, body, #root {
-  height: 100%;
+/* ── Dark theme ────────────────────────────────────────────── */
+.dark {
+  --accent:          #00e0a0;
+  --accent-dim:      rgba(0, 224, 160, 0.10);
+  --accent-border:   rgba(0, 224, 160, 0.25);
+  --red:             #ff5c7a;
+  --yellow:          #f59e0b;
+  --yellow-dim:      rgba(245, 158, 11, 0.10);
+  --yellow-border:   rgba(245, 158, 11, 0.22);
+  --input-bg:        rgba(255, 255, 255, 0.05);
+  --input-border:    rgba(255, 255, 255, 0.10);
+  --input-focus:     rgba(0, 224, 160, 0.5);
+  --input-shadow:    0 0 0 3px rgba(0, 224, 160, 0.09);
+  --input-color:     #dde4f2;
+  --input-ph:        #2e3e56;
+  --btn-bg:          rgba(255, 255, 255, 0.07);
+  --btn-border:      rgba(255, 255, 255, 0.12);
+  --btn-text:        #b0bfd8;
+  --btn-hover-bg:    rgba(255, 255, 255, 0.12);
+  --btn-hover-bd:    rgba(255, 255, 255, 0.20);
+  --pre-bg:          rgba(0, 0, 0, 0.35);
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ── Inputs ───────────────────────────────────────── */
-input[type="text"],
-input[type="number"],
+/* ── Input base styles ─────────────────────────────────────── */
+input[type='text'],
+input[type='number'],
 input:not([type]) {
   height: 38px;
   padding: 0 12px;
@@ -26,26 +61,16 @@ input:not([type]) {
   font-family: inherit;
   color: var(--input-color);
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
 }
+input::placeholder            { color: var(--input-ph); }
+input:focus                   { border-color: var(--input-focus); box-shadow: var(--input-shadow); }
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type='number']          { -moz-appearance: textfield; }
 
-input::placeholder {
-  color: var(--input-placeholder);
-}
-
-input:focus {
-  border-color: var(--input-focus-border);
-  box-shadow: var(--input-focus-shadow);
-}
-
-/* Remove number spinners */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-input[type="number"] { -moz-appearance: textfield; }
-
-/* ── Buttons ───────────────────────────────────────── */
+/* ── Button base styles ────────────────────────────────────── */
 button {
   height: 38px;
   padding: 0 16px;
@@ -57,19 +82,10 @@ button {
   font-family: inherit;
   color: var(--btn-text);
   cursor: pointer;
-  transition: background 0.12s, border-color 0.12s, transform 0.08s, color 0.12s, box-shadow 0.12s;
+  transition: background 0.12s, border-color 0.12s, transform 0.08s;
   white-space: nowrap;
+  flex-shrink: 0;
 }
-
-button:hover:not(:disabled) {
-  background: var(--btn-hover-bg);
-  border-color: var(--btn-hover-border);
-}
-
-button:active:not(:disabled) {
-  transform: scale(0.97);
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
+button:hover:not(:disabled)  { background: var(--btn-hover-bg); border-color: var(--btn-hover-bd); }
+button:active:not(:disabled) { transform: scale(0.97); }
+button:disabled               { cursor: not-allowed; opacity: 0.3; }
